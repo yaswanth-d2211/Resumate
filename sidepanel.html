@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resumate</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+
+  <!-- ===== Main View ===== -->
+  <div id="main-view">
+    <header>
+      <h1>Resumate</h1>
+      <button id="btn-settings" class="icon-btn" title="Settings">⚙️</button>
+    </header>
+
+    <!-- Job Description -->
+    <section class="card">
+      <label for="job-description">Job Description</label>
+      <textarea id="job-description" rows="6" placeholder="Extracted text will appear here…" readonly></textarea>
+      <button id="btn-extract" class="primary-btn">Extract from Page</button>
+    </section>
+
+    <!-- Email -->
+    <section class="card">
+      <label for="email-select">Email</label>
+      <select id="email-select">
+        <option value="">— select saved email —</option>
+      </select>
+      <div class="inline-group">
+        <input id="email-input" type="email" placeholder="Add new email" />
+        <button id="btn-add-email" class="secondary-btn">Add</button>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section class="card">
+      <label for="resume-select">Resume</label>
+      <select id="resume-select">
+        <option value="">— select saved resume —</option>
+      </select>
+      <div class="inline-group">
+        <input id="resume-file" type="file" accept=".txt,.pdf,.doc,.docx" />
+        <button id="btn-upload-resume" class="secondary-btn">Save</button>
+      </div>
+      <div id="resume-preview" class="preview" hidden>
+        <p id="resume-preview-text"></p>
+      </div>
+    </section>
+
+    <!-- AI Provider -->
+    <section class="card">
+      <label for="provider-select">AI Provider</label>
+      <select id="provider-select">
+        <option value="">— select provider —</option>
+      </select>
+      <p id="provider-key-status" class="hint"></p>
+    </section>
+
+    <!-- Output Options -->
+    <section class="card">
+      <div class="inline-group">
+        <div class="field">
+          <label for="format-select">Output Format</label>
+          <select id="format-select">
+            <option value="pdf">PDF</option>
+            <option value="docx">Word (.docx)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="page-count">Pages</label>
+          <input id="page-count" type="number" min="1" max="5" value="1" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Generate -->
+    <button id="btn-generate" class="primary-btn generate-btn" disabled>Generate Tailored Resume</button>
+    <p id="status-msg" class="status" hidden></p>
+  </div>
+
+  <!-- ===== Settings View ===== -->
+  <div id="settings-view" hidden>
+    <header>
+      <button id="btn-back" class="icon-btn" title="Back">←</button>
+      <h1>Settings</h1>
+    </header>
+
+    <section class="card">
+      <h2>API Keys</h2>
+      <p class="hint">Keys are stored locally and never sent anywhere except directly to the provider's API.</p>
+
+      <div class="field">
+        <label for="key-openai">OpenAI Key</label>
+        <input id="key-openai" type="password" placeholder="sk-…" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="key-gemini">Google Gemini Key</label>
+        <input id="key-gemini" type="password" placeholder="AI…" autocomplete="off" />
+      </div>
+      <div class="field">
+        <label for="key-anthropic">Anthropic Key</label>
+        <input id="key-anthropic" type="password" placeholder="sk-ant-…" autocomplete="off" />
+      </div>
+
+      <button id="btn-save-keys" class="primary-btn">Save Keys</button>
+    </section>
+
+    <section class="card">
+      <h2>Manage Data</h2>
+      <button id="btn-clear-data" class="danger-btn">Clear All Saved Data</button>
+    </section>
+  </div>
+
+  <script src="prompts.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
